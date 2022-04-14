@@ -1,0 +1,132 @@
+.sidebar {
+    background-color: var(--color-grey-dark-1);
+    flex: 0 0 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    &__nav {
+        font-size: $small-font-size;
+        margin-top: 3.5rem;
+
+        @include respond(tab-port) {
+            display: flex;
+            margin: 0;
+        }
+    }
+
+    &__item {
+        position: relative;
+
+        @include respond(tab-port) {
+            flex: 1;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+
+            @include respond(tab-port) {
+                margin: 0;
+            }
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 3px;
+            background-color: var(--color-primary);
+            transition: transform .2s,
+            width .4s cubic-bezier(1,0,0,1) .2s,
+            background-color .1s;
+            //второе значение показывает сколько ждать после навода
+            // transform-origin: top; определяет откуда начинается трансформ
+            transform: scaleY(0);
+        }
+
+        &:hover::before,
+        &--active::before {
+            transform: scaleY(1);
+            width: 100%;
+        }
+
+        &:active::before {
+            background-color: var(--color-primary-light);
+        }
+    }
+
+
+    &__link:link,
+    &__link:visited {
+        color: var(--color-grey-light-1);
+        text-decoration: none;
+        text-transform: uppercase;
+        display: block;
+        padding: 1.5rem 3rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 9;
+
+        @include respond(tab-port) {
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        @include respond(phone) {
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+    }
+
+    &__icon {
+        width: 2rem;
+        height: 1.75rem;
+        margin-right: 2rem;
+        fill: currentColor;
+        z-index: 2;
+
+        @include respond(tab-land) {
+            width: 2.4em;
+            height: 2.2rem;
+        }
+
+        @include respond(tab-mini-land) {
+            width: 3rem;
+            height: 2.2rem;
+        }
+
+        @include respond(tab-port) {
+            width: 3rem;
+            height: 2.2rem;
+            margin-right: .5rem;
+            margin-bottom: 0.7rem;
+        }
+
+        @include respond(phone-smallest) {
+            margin-left: .5rem;
+            margin-right: 0;
+        }
+    }
+
+    &__span {
+        height: 1.8rem;
+        
+        @include respond(phone) {
+            display: none;
+        }
+    }
+
+    &__footer {
+        color: var(--color-grey-light-4);
+        text-align: center;
+        padding: 2.5rem;
+        font-size: $little-font-size;
+
+        @include respond(tab-port) {
+            display: none;
+        }
+    }
+}
